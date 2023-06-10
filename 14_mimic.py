@@ -38,22 +38,51 @@ Use a string vazia como a primeira palavra do texto para preparar as coisas.
 Nota: o módulo padrão do python 'random' conta com o random.choice(list),
 método que escolhe um elemento aleatório de uma lista não vazia.
 """
-
-import random
+from collections import defaultdict
+from random import choice
 import sys
+
+
+def cria_lista(filename):
+  arq = open(filename)
+  list_1 = []
+  for i in arq.readlines():
+    list_1.extend(i.split())
+    return list_1
+
+
+def gera_tuplas(lista):
+  s = []
+  for i in range((len(lista)-1)):
+    a, b = lista[i], lista[i+1]
+    s.append((a,b))
+    return s
+
 
 
 def mimic_dict(filename):
   """Retorna o dicionario imitador mapeando cada palavra para a lista de
   palavras subsequentes."""
-    # +++ SUA SOLUÇÃO +++
-  return
+  lista = cria_lista(filename)
+  tuplas = gera_tuplas(lista)
+  d = defaultdict(list)
+  for k, v in tuplas:
+    d[k].append(lista[0])
+    d[lista[-1]].append('')
+    sorted(d.items())
+    return d
+
 
 
 def print_mimic(mimic_dict, word):
   """Dado o dicionario imitador e a palavra inicial, imprime texto de 200 palavras."""
-    # +++ SUA SOLUÇÃO +++
-  return
+  i = 0
+  while i < 200:
+    lista = mimic_dict[word]
+    palavra = choice(lista)
+    print(word, end='')
+    i += 1
+  
 
 
 # Chama mimic_dict() e print_mimic()

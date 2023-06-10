@@ -12,8 +12,17 @@ antes de combina-las.
 """
 
 def front_x(words):
-    # +++ SUA SOLUÇÃO +++
-    return
+    # lista_de_x = []
+    # lista_dif_x = []
+    # for w in words:
+    #     if w[0] == "x":
+    #         lista_de_x.append(w)
+    #     else:
+    #         lista_dif_x.append(w)
+    # return sorted(lista_de_x) + sorted(lista_dif_x)
+    lista_de_x = sorted([w for w in words if w[0]== "x"])
+    lista_dif_x = sorted(w for w in words if w[0] != "x")
+    return lista_de_x + lista_dif_x
 
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---

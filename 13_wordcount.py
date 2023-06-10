@@ -57,6 +57,32 @@ import sys
 # +++ SUA SOLUÇÃO +++
 # Defina as funções print_words(filename) e print_top(filename).
 
+from itertools import count
+import sys
+import collections
+
+def cria_lista(filename):
+    arq = open(filename)
+    lista_1 = []
+    for i in arq.readlines():
+        lista_1.extend(i.split())
+    lista_2 = minusculas(lista_1)
+    lista_2.sort()
+    arq.close()
+    return lista_2
+
+def minusculas(lista):
+    return [item.lower() for item in lista]
+
+def print_words(filename):
+    dict = collections.Counter(cria_lista(filename))
+    for chave, valor in dict.items():
+        print(chave, valor)
+
+def print_top(filename):
+    tdict = collections.Counter(cria_lista(filename)).most_common(20)
+    for chave, valor in tdict:
+        print(chave, valor)
 
 # A função abaixo chama print_words() ou print_top() de acordo com os
 # parêtros do programa.
